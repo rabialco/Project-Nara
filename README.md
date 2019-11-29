@@ -23,4 +23,7 @@ tugas-tugasnya.
 4. To do widget
 
 ## Status Pipelines
-[![pipeline status](https://gitlab.com/ProjectNara/project-ppw/badges/master/pipeline.svg)](https://gitlab.com/ProjectNara/project-ppw/commits/master)
+[![pipeline status](https://gitlab.com/ProjectNara/project-akhir-ppw/badges/master/pipeline.svg)](https://gitlab.com/ProjectNara/project-akhir-ppw/commits/master)
+
+## Code Coverage
+[![coverage report](https://gitlab.com/ProjectNara/project-akhir-ppw/badges/master/coverage.svg)](https://gitlab.com/ProjectNara/project-akhir-ppw/commits/master)
