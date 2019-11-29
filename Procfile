@@ -1,0 +1,1 @@
+web: gunicorn nara_2.wsgi --log-file -
