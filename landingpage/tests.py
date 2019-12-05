@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import resolve
-from .views import landing
+from .views import landing, tentang
 
 # Create your tests here.
 class LandingPageUnitTest(TestCase):
@@ -27,3 +27,11 @@ class LandingPageUnitTest(TestCase):
     def test_login_using_template(self):
         response = Client().get('/login/')
         self.assertTemplateUsed(response, 'registration/login.html')
+
+    def test_about_page_url_exist(self):
+        response = Client().get('/about/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_about_page_using_landing_views(self):
+        found = resolve('/about/')
+        self.assertEqual(found.func, tentang)
