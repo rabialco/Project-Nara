@@ -35,3 +35,7 @@ class LandingPageUnitTest(TestCase):
     def test_about_page_using_landing_views(self):
         found = resolve('/about/')
         self.assertEqual(found.func, tentang)
+
+    def test_about_page_using_template(self):
+        response = Client().get('/about/')
+        self.assertTemplateUsed(response, 'tentang.html')
