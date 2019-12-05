@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'base.html' %}
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{% static 'reminder/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section>
+        {% block content %}
+        <div class="container" style="font-family: 'Montserrat';position: absolute; top:50%;left:50%;transform: translate(-50%, -50%); max-width: 70%;">
+            <div class="row-12" >
+                <div class="col" style="text-align: center;">
+                    <h1><i><b>About Us</b></i></h1><br>
+                    <p><i>Project-NARA Planner</i> merupakan produk dari projek bersama yang terbentuk
+                        melalui Kelas Perancangan dan Pemrograman Web di Fasilkom, UI. Nama NARA
+                        itu sendiri merupakan singkatan dari developer-developer yang membentuk projek ini
+                        yaitu Nadia, Alco, Ronaldi, dan Ariell.</p>
+                </div>
+            </div>
+        </div>
+        {% endblock content %}
+    </section>
+</body>
+</html>
