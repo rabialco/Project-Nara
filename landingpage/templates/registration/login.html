@@ -1,0 +1,37 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Log In - NARA Project</title>
+</head>
+<body class="d-flex align-items-center text-center justify-content-center h-100">
+    {% block content %}
+    <div>
+      <div class="row">
+          <div class="col">
+              {% if form.errors %}
+                <p>Your username and password didn't match. Please try again.</p>
+              {% endif %}
+          </div>
+        </div>
+        
+        <div class="row text-center justify-content-center">
+          <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+              <table>
+                <tr>
+                  <td>{{ form.username.label_tag }}</td>
+                  <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                  <td>{{ form.password.label_tag }}</td>
+                  <td>{{ form.password }}</td>
+                </tr>
+              </table>
+            <input type="submit" value="Log in" id="login_btn"/>
+          </form>
+        </div>
+  
+        {# Assumes you setup the password_reset view in your URLconf #}
+        <p><a href="{% url 'password_reset' %}" style="color: #0b5058;">Lupa password?</a></p>    
+    </div>
+    {% endblock %}
+</body>
