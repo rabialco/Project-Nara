@@ -15,3 +15,15 @@ class LandingPageUnitTest(TestCase):
     def test_landing_page_using_template(self):
         response = Client().get('')
         self.assertTemplateUsed(response, 'landingpage.html')
+
+    def test_login_url_exist(self):
+        response = Client().get('/login/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_logout_url_exist(self):
+        response = Client().get('/logout/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_using_template(self):
+        response = Client().get('/login/')
+        self.assertTemplateUsed(response, 'registration/login.html')
