@@ -24,11 +24,8 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('deadline/', include('deadline.urls')),
     path('jadwal/', include('jadwal.urls')),
-<<<<<<< HEAD
-    path('profil/', include('profil.urls'))
-=======
+    path('profil/', include('profil.urls')),
     path('nilai/', include('nilai.urls')),
->>>>>>> db5f030496edaf2f055294a188cc31c46c3e95f0
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
