@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def profil(request):
-    return HttpResponse('yey')
+    return render(request, 'profil.html')
