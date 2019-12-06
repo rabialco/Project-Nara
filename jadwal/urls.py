@@ -20,7 +20,6 @@ from .views import CalendarView, event
 app_name = "jadwal"
 
 urlpatterns = [
-
     path('', CalendarView.as_view(), name='calendar'),
     path('event/new/$', event, name='event_new'),
     path('event/edit/<int:event_id>', event, name='event_edit'),

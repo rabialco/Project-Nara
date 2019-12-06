@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    {% block style %}
+    {% endblock %}
+
 </head>
 <body style="font-family: 'Montserrat';">
     <nav class="navbar navbar-expand-lg navbar-light navbar-navbarcolor py-3" style="background-color: #F6E0BB;">
@@ -20,10 +24,10 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ml-auto">
             <li class="nav-item mr-md-2">
-                <a class="nav-link" href="">Schedule Planner<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'jadwal:calendar' %}">Jadwal<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item mr-md-2">
-                <a class="nav-link" href="">Your Deadline</a>
+                <a class="nav-link" href="{% url 'deadline:index' %}">Deadline</a>
             </li>
             <li class="nav-item mr-md-2">
                 <a class="nav-link" href="">Score Calculator</a>
