@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('landingpage.urls')),
     path('', include('django.contrib.auth.urls')),
     path('deadline/', include('deadline.urls')),
-    path('jadwal/', include('jadwal.urls'))
+    path('jadwal/', include('jadwal.urls')),
+    path('nilai/', include('nilai.urls')),
 ]
