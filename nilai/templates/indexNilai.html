@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'nilai/style.css' %}">
+{% endblock %}
+
+
+    {% block content %}
+        <section>
+            <div class="container-fluid">
+                <div class="row ml-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12 mt-5 mb-3 ml-3">
+                        <h1 style="font-style :italic;">
+                            <b>
+                                IPK Calculator
+                            </b>
+                        </h1>
+                    </div>
+                </div>
+                <div class="row ml-3">
+                    <div class="col-lg-4 col-md-6 col-sm-12 align-text-center text-center">
+                        <div class="container container-bodycolor p-3 rounded-lg mb-2 mt-3">
+                            <div class="container text-left mb-3">
+                                    <h4><b>Semester {{sem}} :</b></h4>
+                            </div>
+                            <div class="container container-broken rounded-lg mb-3 py-2">
+                                <div class="row">
+                                    <div class="col text-center align-self-center">
+                                        <h6>
+                                            <b>
+                                                No.
+                                            </b>
+                                        </h6>
+                                    </div>
+                                    <div class="col text-center align-self-center px-0">
+                                        <h6>
+                                            <b>
+                                                Mata Kuliah
+                                            </b>
+                                        </h6>
+                                    </div>
+                                    <div class="col text-center align-self-center">
+                                        <h6>
+                                            <b>
+                                                SKS
+                                            </b>
+                                        </h6>
+                                    </div>
+                                    <div class="col text-center align-self-center">
+                                        <h6>
+                                            <b>
+                                                Nilai
+                                            </b>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row bg-white rounded-lg py-2 px-1 text-justify" style="height: 400px;">
+                                    <div class="row" style="height: 300px; overflow-y: scroll; width: 400px">
+                                        <div class="col">
+                                            {% for i in jml %}
+                                                <div class="row ml-4 mb-3 pl-3 text-center">    
+                                                    <p> {{i}} </p>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col" >
+                                            {% for i in tampil %}
+                                                <div class="row mb-3 justify-content-center" style="max-height: 40px;overflow: scroll;">
+                                                    {{i.mata_kuliah}}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col">
+                                            {% for i in tampil %}
+                                            <div class="row ml-4 mb-3 pl-2 text-center">
+                                                <p> {{i.sks}} </p>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col">
+                                            {% for i in tampil %}
+                                            <div class="row ml-4 mb-3 pl-2 text-center">
+                                                {% if i.nilai == 4.0 %}
+                                                    <p> A </p>
+                                                {% endif %}
+                                                {% if i.nilai == 3.7 %}
+                                                    <p> A- </p>
+                                                {% endif %}
+                                                {% if i.nilai == 3.3 %}
+                                                    <p> B+ </p>
+                                                {% endif %}
+                                                {% if i.nilai == 3.0 %}
+                                                    <p> B </p>
+                                                {% endif %}
+                                                {% if i.nilai == 2.7 %}
+                                                    <p> B- </p>
+                                                {% endif %}
+                                                {% if i.nilai == 2.3 %}
+                                                    <p> C+ </p>
+                                                {% endif %}
+                                                {% if i.nilai == 2.0 %}
+                                                    <p> C </p>
+                                                {% endif %}
+                                                {% if i.nilai == 1.0 %}
+                                                    <p> D </p>
+                                                {% endif %}
+                                                {% if i.nilai == 0.0 %}
+                                                    <p> E </p>
+                                                {% endif %}
+                                            </div>    
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="container ml-3">
+                                        <div class="col" >
+                                            Nilai IP : {{ans}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 text-center">
+                        <div class="container container-bodycolor p-3 rounded-lg mb-2 mt-3">
+                            <div class="container text-left mb-3">
+                                <h4><b>Input Data </b></h4>
+                            </div>
+                            <div class="container bg-white rounded-lg py-2 px-3 text-justify">
+                                <form method="POST" action="{% url 'idx' %}">
+                                    {% csrf_token %}
+                                    {{ isi }}
+                                    <input type="submit" value="Submit">
+                                </form>
+                            </div>
+                            <div class="container text-left mb-3">
+                                <h4>Reset Data</h4>
+                            </div>
+                            <div class="container bg-white rounded-lg py-2 px-3 text-justify">
+                                <a href="{% url 'hapus' %}">
+                                    <button type="button" class="btn btn-danger">Reset</button>
+                                </a>
+                            </div>
+                            <div class="container text-left mb-3">
+                                <h4>Cari Semester</h4>
+                            </div>
+                            <div class="container bg-white rounded-lg py-2 px-3 text-justify">
+                                <form method="POST" action="{% url 'hitung' %}">
+                                    {% csrf_token %}
+                                    {{ cari }}
+                                    <input type="submit" value="Search">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 align-text-center">
+                        <div class="container container-bodycolor p-3 rounded-lg mb-2 mt-3">
+                            <div class="container text-left mb-3">
+                                <h4><b>Summary :</b></h4>
+                            </div>
+                            <div class="container bg-white rounded-lg mb-3 py-2" style="height:200px;">
+                                {% if ans > 3.5 %}
+                                    <p>
+                                        Pertahankan Prestasimu!
+                                    </p>
+                                {% elif ans > 3.0 %}
+                                    <p>
+                                        Ayo Lebih Semangat Lagi Belajarnya!
+                                    </p>
+                                {% elif ans > 2.5 %}
+                                    <p>
+                                        Jangan Patah Semangat!
+                                    </p>
+                                {% elif ans > 0.0 %}
+                                    <p>
+                                        Hati-hati IPmu Terlalu Rendah
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 mt-5 ml-3">
+                        <h5>
+                            <b>
+                                © NARA 2019
+                            </b>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{% endblock %} 
+</body>
+</html>
