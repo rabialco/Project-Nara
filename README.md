@@ -12,9 +12,7 @@ Link Heroku app: proj-nara.herokuapp.com
 Membantu mahasiswa Universitas Indonesia mengatur jadwal belajar dan perkuliahan. 
 Selain itu akan membantu mahasiswa menentukan target IP mereka dengan adanya fitur
 IP Kalkulator. Website kami juga akan membantu dalam pengingatan deadline dengan
-adanya halaman Your Deadline. Kemudian juga ada widget To Do List untuk mengingatkan
-tugas-tugasnya.
-//NTAR DIAPUSS
+adanya halaman Your Deadline. Kemudian juga ada fitur profile, dimana pengguna dapat mengubah profil akunnya sendiri.
 
 ## Fitur
 1. Schedule Planner
