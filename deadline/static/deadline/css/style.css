@@ -1,8 +1,5 @@
 /* TBI */
 
-html{
-    background-color: black;
-}
 .navbar-navbarcolor{
     background-color : #F6E0BB;
 }
@@ -24,13 +21,13 @@ body {
     float: right;
 }
 
-.btn {
+/* .btn {
     outline: none;
     color: black;
     background-color: transparent;
     box-shadow: 0 0 0 0;
     margin-right: 3px;
-}
+} */
 
 .clearfix {
     margin: 15px;
