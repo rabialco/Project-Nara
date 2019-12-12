@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block style %}
+        <link rel="stylesheet" href="{% static 'deadline/css/style.css' %}">
+{% endblock %}
+
     {% block content %}
     <body style="width: 100%;">
         <section>
@@ -54,8 +58,9 @@
                                     <div class="col mt-4 ml-3" style="height: 350px; overflow-y: scroll;" >
                                         {% for j in list_dl %}
                                             {% if j.selesai %}
-                                                    <p>{{ j.nama_deadline }}
-                                                        <a href="{% url 'deadline:erase' pk=j.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:120px;"><i class="fa fa-trash"></i>Delete</button></a>
+                                                    <p>
+                                                        {{ j.nama_deadline }}
+                                                        <a href="{% url 'deadline:erase' pk=j.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:120px; margin-right: 5px;"><i class="fa fa-trash"></i>Delete</button></a>
                                                         <a href="{% url 'deadline:undone' pk=j.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:30px;"><i class="fa fa-trash"></i>Undone</button></a>
                                                     </p>
                                                 <br>
