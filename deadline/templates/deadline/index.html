@@ -24,7 +24,7 @@
                                         {% for i in list_dl %}
                                             {% if not i.selesai %}
                                                     <p>{{ i.nama_deadline }}
-                                                            <a href="{% url 'done' pk=i.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:30px;"><i class="fa fa-trash"></i>Done</button></a>
+                                                            <a href="{% url 'deadline:done' pk=i.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:30px;"><i class="fa fa-trash"></i>Done</button></a>
                                                     </p>
                                                 <br>
                                             {% endif %}
@@ -55,8 +55,8 @@
                                         {% for j in list_dl %}
                                             {% if j.selesai %}
                                                     <p>{{ j.nama_deadline }}
-                                                        <a href="{% url 'erase' pk=j.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:120px;"><i class="fa fa-trash"></i>Delete</button></a>
-                                                        <a href="{% url 'undone' pk=j.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:30px;"><i class="fa fa-trash"></i>Undone</button></a>
+                                                        <a href="{% url 'deadline:erase' pk=j.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:120px;"><i class="fa fa-trash"></i>Delete</button></a>
+                                                        <a href="{% url 'deadline:undone' pk=j.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:30px;"><i class="fa fa-trash"></i>Undone</button></a>
                                                     </p>
                                                 <br>
                                             {% endif %}

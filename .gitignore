@@ -1,5 +1,3 @@
-staticfiles/
-static/
 __pycache__/
 env/
 db.sqlite3
@@ -7,3 +5,4 @@ chromedriver
 chromedriver.exe
 .coverage
 .vscode/
+**/__pycache__/

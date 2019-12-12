@@ -21,7 +21,7 @@ UnitTest:
     - python manage.py runserver 8000 &
   when: on_success
   script:
-    - coverage run --include='/*' manage.py test
+    - coverage run --include='nilai/*, profil/*, deadline/*, jadwal/*' manage.py test
     - coverage report -m
 
 Deployment:

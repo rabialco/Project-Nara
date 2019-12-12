@@ -1,4 +1,4 @@
-"""nara_2 URL Configuration
+"""nara URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -14,18 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls.static import static
-from django.conf import settings
+from django.urls import path, include, re_path
+from .views import CalendarView, event
+
+app_name = "jadwal"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('landingpage.urls')),
-    path('', include('django.contrib.auth.urls')),
-    path('deadline/', include('deadline.urls')),
-    path('jadwal/', include('jadwal.urls')),
-    path('profil/', include('profil.urls')),
-    path('nilai/', include('nilai.urls')),
+    path('', CalendarView.as_view(), name='calendar'),
+    path('event/new/$', event, name='event_new'),
+    path('event/edit/<int:event_id>', event, name='event_edit'),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
