@@ -21,19 +21,19 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ml-auto">
             <li class="nav-item mr-md-2">
-                <a class="nav-link" href="">Schedule Planner<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'jadwal:calendar' %}">Jadwal<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item mr-md-2">
-                <a class="nav-link" href="">Your Deadline</a>
+                <a class="nav-link" href="{% url 'deadline:index' %}">Deadline</a>
             </li>
             <li class="nav-item mr-md-2">
-                <a class="nav-link" href="">Score Calculator</a>
+                <a class="nav-link" href="{% url 'idx' %}">Kalkulator IPK</a>
             </li>
             <li class="nav-item mr-md-2">
-                    <a class="nav-link" href="">Profile</a>
+                    <a class="nav-link" href="{% url 'profil' %}">Profil</a>
                 </li>
             <li class="nav-item mr-md-2">
-                <a class="nav-link" href="{% url 'tentang' %}">About Us</a>
+                <a class="nav-link" href="{% url 'tentang' %}">Tentang Kami</a>
             </li>
             </ul>
         </div>
