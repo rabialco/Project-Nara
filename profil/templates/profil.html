@@ -7,32 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Profile</title>
+    <title>Profil</title>
 </head>
 <body>
     {% block content %}
     <div class="container-fluid">
         <div class="row mt-5">
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="text-center">
-                    {% if foto %}
-                        <img src="{{ foto.url }}" alt="Profile Picture" style="width:250px; border-radius: 50%;">                    
-                    {% else %}
-                        <img src="media/default.png" alt="Profile Picture" style="width:250px; border-radius: 50%;">                    
-                    {% endif %}
+                <div class="text-center" id="gambar">
+                    <img src="../media/default.png" alt="Profile Picture" style="width:250px; border-radius: 50%;">                    
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 my-auto">
                 <table class="mb-3">
                     <tr>
                         <td>Username</td>
-                        <td class="pl-3">
+                        <td class="pl-3" id="uname">
                             {% if username %}
-                                {% if username == 'Fill here!' %}
-                                    : dummy123
-                                {% else %}
-                                    : {{username}}
-                                {% endif %}
+                                : {{username}}
                             {% else %}
                                 : dummy123
                             {% endif %}
@@ -40,13 +32,9 @@
                     </tr>
                     <tr>
                         <td>Nama</td>
-                        <td class="pl-3">
+                        <td class="pl-3" id="nama">
                             {% if nama %}
-                                {% if nama == 'Fill here!' %}
-                                    : Dummy
-                                {% else %}
-                                    : {{nama}}
-                                {% endif %}
+                                : {{nama}}
                             {% else %}
                                 : Dummy
                             {% endif %}
@@ -54,7 +42,7 @@
                     </tr>
                     <tr>
                         <td>Semester</td>
-                        <td class="pl-3">
+                        <td class="pl-3" id="sem">
                             {% if sem %}
                                 : {{sem}}
                             {% else %}
@@ -64,13 +52,9 @@
                     </tr>
                     <tr>
                         <td>Motto</td>
-                        <td class="pl-3">: <i>
+                        <td class="pl-3" id="motto">: <i>
                             {% if motto %}
-                                {% if motto == '' %}
-                                    : Just keep swimming!
-                                {% else %}
-                                    {{motto}}
-                                {% endif %}
+                                {{motto}}
                             {% else %}
                                 : Just keep swimming!
                             {% endif %}
@@ -93,19 +77,24 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{% url 'profil' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{user_form.as_p}}
                     {{profile_form.as_p}}
-                    <input type="submit" class="btn btn-primary" value="Submit" />           
-                </form>
+                    <input type="submit" class="btn btn-primary" value="Submit" id = "tombol" />           
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
             </div>
             </div>
         </div>
     </div>
+    {% endblock %}
+    {% block script %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/profil.js' %}"></script>
     {% endblock %}
 </body>
 </html>
