@@ -6,3 +6,4 @@ chromedriver.exe
 .coverage
 .vscode/
 **/__pycache__/
+static/
