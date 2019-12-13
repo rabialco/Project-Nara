@@ -34,5 +34,15 @@ def profil(request):
                 'profile_form': profile_form,
              })
 
-def ubahProfil(request):
+def changeProfil(request):
+    obj = Profile.objects.get(pk=1)
+    print("masuk valid")
+    obj.username = request.POST['username']
+    obj.nama = request.POST['nama']
+    obj.sem = request.POST['semester']
+    obj.motto = request.POST['motto']
+    obj.thumb = request.POST['thumb']
+    obj.save()
+    print(request.POST['motto'])
+    print("Sokses")
     return HttpResponse('yey')

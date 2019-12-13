@@ -1,7 +1,7 @@
 from django.urls import path, include
-from .views import profil, ubahProfil
+from .views import profil, changeProfil
 
 urlpatterns = [
     path('', profil, name='profil'),
-    path('chg/', ubahProfil, name='ubah'),
+    path('chg/', changeProfil, name='ubah'),
 ]
