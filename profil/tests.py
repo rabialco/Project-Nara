@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import resolve
-from .views import profil, changeProfil
+from .views import profil, changeProfil, getProfil
 from .models import Profile
 
 # Create your tests here.
@@ -54,3 +54,7 @@ class ProfileUnitTest(TestCase):
     def test_url_ajax_get(self):
         response = Client().get('/profil/get/')
         self.assertEqual(response.status_code, 200)
+
+    def test_ajax_get_views(self):
+        found = resolve('/profil/get/')
+        self.assertEqual(found.func, getProfil)
