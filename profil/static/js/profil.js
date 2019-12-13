@@ -8,7 +8,7 @@ $(document).ready(() => {
     $('#close').click( function() {
         $.ajax({
             method: 'GET',
-            url: "https://proj-nara.herokuapp.com/profil/get/",
+            url: "http://proj-nara.herokuapp.com/profil/get/",
             success: function(json) {
                 var data = json.data[0];
                 console.log(json)
@@ -34,7 +34,7 @@ $(document).ready(() => {
     function ubah_post() {
         console.log("ubah bisaa")
         $.ajax({
-            url : "https://proj-nara.herokuapp.com/profil/chg/",
+            url : "http://proj-nara.herokuapp.com/profil/chg/",
             type : "POST",
             data : {
                 'username' : $('#id_username').val(),
