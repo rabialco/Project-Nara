@@ -8,7 +8,11 @@ Calendar
 <div class="container-fluid">
 
   <div class="clearfix">
-    <a class="btn btn-info left" href="{% url 'jadwal:calendar' %}?{{ prev_month }}"> Previous Month </a>
+
+      <button onclick="getElementById('tanggal').innerHTML=Date()">What is the time?</button>
+      <p id="tanggal"></p>
+        
+    <a class="btn btn-info left"  href="{% url 'jadwal:calendar' %}?{{ prev_month }}"> Previous Month </a>
     <a class="btn btn-info right" href="{% url 'jadwal:calendar' %}?{{ next_month }}"> Next Month </a>
     <a class="btn btn-info right" href="{% url 'jadwal:event_new' %}"> New Event </a>
   </div>
@@ -33,4 +37,18 @@ Calendar
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="event" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="event">Aktifitas Baru</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 {% endblock %}
+{%block script%}
+{% endblock%}
