@@ -50,4 +50,7 @@ class ProfileUnitTest(TestCase):
     def test_ajax_post_views(self):
         found = resolve('/profil/chg/')
         self.assertEqual(found.func, changeProfil)
-    
+
+    def test_url_ajax_get(self):
+        response = Client().get('/profil/get/')
+        self.assertEqual(response.status_code, 200)
