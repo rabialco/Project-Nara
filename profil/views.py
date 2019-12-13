@@ -47,5 +47,6 @@ def changeProfil(request):
     print("Sokses")
     return HttpResponse('yey')
 
-def dapet(request):
-    return HttpResponse('hore')
+def getProfil(request):
+    data = list(Profile.objects.values("nama","semester","username","motto","thumb"))
+    return JsonResponse({"data":data}, safe=False)
