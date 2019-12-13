@@ -1,53 +1,55 @@
 // Ubah profil
-$('#tombol').on('click', function(event) {
-    event.preventDefault();
-    ubah_post();
-})
-
-$('#close').click( function() {
-    $.ajax({
-        method: 'GET',
-        url: "https://proj-nara.herokuapp.com/profil/get/",
-        success: function(json) {
-            var data = json.data[0];
-            console.log(json)
-            if (data.username != '') {
-                $("#uname").empty();
-                $("#uname").append("<td>: "+data.username+"</td>");
-            }
-
-            if (data.nama != '') {
-                $("#nama").empty();
-                $("#nama").append("<td>: "+data.nama+"</td>");
-            }
-
-            $("#sem").empty();
-            $("#sem").append("<td>: "+data.semester+"</td>");
-
-            $("#motto").empty();
-            $("#motto").append("<td>: "+data.motto+"</td>");
-        }
+$(document).ready(() => {
+    $('#tombol').on('click', function(event) {
+        event.preventDefault();
+        ubah_post();
     })
-})
-
-function ubah_post() {
-    console.log("ubah bisaa")
-    $.ajax({
-        url : "https://proj-nara.herokuapp.com/profil/chg/",
-        type : "POST",
-        data : {
-            'username' : $('#id_username').val(),
-            'nama' : $('#id_nama').val(),
-            'semester' : $('#id_semester').val(),
-            'motto' : $('#id_motto').val(),
-        },
-
-        success: function() {
-            console.log('success')
-            alert("Profil berhasil diubah!")
-        }
+    
+    $('#close').click( function() {
+        $.ajax({
+            method: 'GET',
+            url: "https://proj-nara.herokuapp.com/profil/get/",
+            success: function(json) {
+                var data = json.data[0];
+                console.log(json)
+                if (data.username != '') {
+                    $("#uname").empty();
+                    $("#uname").append("<td>: "+data.username+"</td>");
+                }
+    
+                if (data.nama != '') {
+                    $("#nama").empty();
+                    $("#nama").append("<td>: "+data.nama+"</td>");
+                }
+    
+                $("#sem").empty();
+                $("#sem").append("<td>: "+data.semester+"</td>");
+    
+                $("#motto").empty();
+                $("#motto").append("<td>: "+data.motto+"</td>");
+            }
+        })
     })
-}
+    
+    function ubah_post() {
+        console.log("ubah bisaa")
+        $.ajax({
+            url : "https://proj-nara.herokuapp.com/profil/chg/",
+            type : "POST",
+            data : {
+                'username' : $('#id_username').val(),
+                'nama' : $('#id_nama').val(),
+                'semester' : $('#id_semester').val(),
+                'motto' : $('#id_motto').val(),
+            },
+    
+            success: function() {
+                console.log('success')
+                alert("Profil berhasil diubah!")
+            }
+        })
+    }    
+})
 
 $(function() {
 
