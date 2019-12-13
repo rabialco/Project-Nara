@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'deadline/base.html' %}
 {% load static %}
 
 {% block style %}
-        <link rel="stylesheet" href="{% static 'deadline/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'deadline/css/style.css' %}">
 {% endblock %}
 
     {% block content %}
@@ -24,11 +24,12 @@
                             </div>
                             <div class="container bg-white rounded-lg py-2 px-3 text-justify">
                                 <div class="row ml-2" style="height: 400px; max-height: 400px;">
-                                    <div class="col mt-4 ml-3 px-0" style="height: 350px; overflow-y: scroll;" >
+                                    <div class="col mt-4 ml-3 px-0" style="height: 350px; overflow-y: scroll;" id="undone_task">
                                         {% for i in list_dl %}
                                             {% if not i.selesai %}
-                                                    <p>{{ i.nama_deadline }}
-                                                            <a href="{% url 'deadline:done' pk=i.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:30px;"><i class="fa fa-trash"></i>Done</button></a>
+                                                    <p>
+                                                        {{ i.nama_deadline }}
+                                                        <a href="{% url 'deadline:done' pk=i.pk %}"><button class="btn btn-icon btn-danger" style="position: absolute; right:30px;"><i class="fa fa-trash"></i>Done</button></a>
                                                     </p>
                                                 <br>
                                             {% endif %}
@@ -36,11 +37,14 @@
                                     </div>
                                 </div>
                                 <div class="row ml-2 mb-2">
-                                    <div class="container">
-                                        <form method="POST">
-                                            {% csrf_token %}
-                                            {{ form }}
-                                        </form>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <!-- <form method="POST" id="submit_deadline"> -->
+                                        {% csrf_token %}
+                                        {{ form }}
+                                        <!-- </form> -->
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <button id="submit_button" class="btn btn-icon btn-danger" style="margin-top: 30px;"><i class="fa fa-trash"></i>Submit</button>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -89,8 +93,57 @@
                 </div>
             </div>
         </section>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        {% endblock content %}
+
+        {% block script %}
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{% static 'deadline/js/scrollreveal.js' %}" type="text/javascript"></script>
+        <script>
+            window.sr = ScrollReveal();
+            sr.reveal('.container-bodycolor', { duration: 1000 });
+            $('#submit_button').click( function(event){
+                console.log('masuk');
+                event.preventDefault();
+                tambah_deadline();
+            })
+            function tambah_deadline(){
+                $.ajax({
+                    // headers: { "X-CSRFToken": '{{csrf_token}}' },
+                    url: 'http://localhost:8000/deadline/add_dl_service/',
+                    // dataType: 'json',
+                    type: 'POST',
+                    // data: $(this).serialize(),
+                    data : {
+                        "daftar_deadline" : $('#id_daftar_deadline').val(),
+                        "csrfmiddlewaretoken" : $("input[name = csrfmiddlewaretoken]").val(),
+                    },
+                    success: function (result) {
+                        // result.s
+                        // console.log(result)
+                        result = JSON.parse(result.results);
+                        $("#undone_task").html("");
+                        for ( var i = 0 ; i < result.length ; i++)
+                        {
+                            // console.log(result[i] + "asdasddasdasdasd")
+                            var x = ``
+                            x += `<p>
+                                        `+ result[i].fields.nama_deadline + `
+                                        <a href="/deadline/` + result[i].pk +`"><button class="btn btn-icon btn-danger" style="position: absolute; right:30px;"><i class="fa fa-trash"></i>Done</button></a>
+                                    </p>
+                                <br>`
+                            // console.log(x);
+                            $("#undone_task").append(x)
+                            
+                        }
+                        $('#id_daftar_deadline').val("")
+                    }
+                });
+            }
+            
+        </script>
+        {% endblock %}
     </body>
-    {% endblock content %}
