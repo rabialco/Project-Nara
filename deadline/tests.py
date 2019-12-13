@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import resolve
 from .models import dl
-from .views import move, unmove, erase
+from .views import move, unmove, erase, add_deadline_service
 # Create your tests here.
 class DeadlineUnitTest(TestCase):
     def setUp(self):
@@ -43,3 +43,20 @@ class DeadlineUnitTest(TestCase):
         response = self.client.get('/deadline/delete/1')
         hitung_jumlah = dl.objects.all().count()
         self.assertEqual(hitung_jumlah,1)
+
+    def test_url_ajax_post(self):
+        data = {'daftar_deadline' : 'adagakya'}
+        response = self.client.post("/deadline/add_dl_service/",data)
+        self.assertEqual(response.status_code,200)
+
+    def test_ajax_post_views(self):
+        response = resolve("/deadline/add_dl_service/")
+        self.assertEqual(response.func, add_deadline_service)
+
+    def test_url_ajax_get(self):
+        response = self.client.get("/deadline/add_dl_service/")
+        self.assertEqual(response.status_code,200)
+
+    def test_ajax_get_views(self):
+        response = resolve("/deadline/add_dl_service/")
+        self.assertEqual(response.func,add_deadline_service)
