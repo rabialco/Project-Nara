@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import resolve
-from .views import profil
+from .views import profil, changeProfil
 from .models import Profile
 
 # Create your tests here.
@@ -46,4 +46,8 @@ class ProfileUnitTest(TestCase):
         data = {'username':'apaja','nama':'apaja','motto':'Baikbaikbaikbaik', 'semester':1, 'thumb':''}
         response = self.client.post('/profil/chg/', data)
         self.assertEqual(response.status_code, 200)
+
+    def test_ajax_post_views(self):
+        found = resolve('/profil/chg/')
+        self.assertEqual(found.func, changeProfil)
     
