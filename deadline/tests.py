@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.urls import resolve
 from .models import dl
 from .views import move, unmove, erase, add_deadline_service
+from django.contrib.auth.models import User
 # Create your tests here.
 class DeadlineUnitTest(TestCase):
     def setUp(self):
