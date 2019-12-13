@@ -81,7 +81,7 @@
                                 <h4>Summary :</h4>
                             </div>
                             <div class="container bg-white rounded-lg py-2 px-3 text-justify">
-                                <p>
+                                <p id = "undone_task_summary">
                                     Your Task : {{belum}}
                                 </p>
                                 <p>
@@ -106,17 +106,15 @@
             window.sr = ScrollReveal();
             sr.reveal('.container-bodycolor', { duration: 1000 });
             $('#submit_button').click( function(event){
-                console.log('masuk');
+                // console.log('masuk');
                 event.preventDefault();
                 tambah_deadline();
             })
             function tambah_deadline(){
                 $.ajax({
-                    // headers: { "X-CSRFToken": '{{csrf_token}}' },
                     url: 'http://proj-nara.herokuapp.com/deadline/add_dl_service/',
-                    // dataType: 'json',
+                    // url: 'http://localhost:8000/deadline/add_dl_service/',
                     type: 'POST',
-                    // data: $(this).serialize(),
                     data : {
                         "daftar_deadline" : $('#id_daftar_deadline').val(),
                         "csrfmiddlewaretoken" : $("input[name = csrfmiddlewaretoken]").val(),
@@ -126,19 +124,28 @@
                         // console.log(result)
                         result = JSON.parse(result.results);
                         $("#undone_task").html("");
+                        var belum = 0;
                         for ( var i = 0 ; i < result.length ; i++)
                         {
-                            // console.log(result[i] + "asdasddasdasdasd")
                             var x = ``
                             x += `<p>
                                         `+ result[i].fields.nama_deadline + `
                                         <a href="/deadline/` + result[i].pk +`"><button class="btn btn-icon btn-danger" style="position: absolute; right:30px;"><i class="fa fa-trash"></i>Done</button></a>
                                     </p>
                                 <br>`
-                            // console.log(x);
                             $("#undone_task").append(x)
                             
+                            if(result[i].fields.selesai == true){
+                                belum+=1;
+                            }
                         }
+                        var y = ``
+                        var z =  result.length - belum 
+                        y += `<p>
+                                Your Task : ` + z +`
+                            </p>`
+                            $("#undone_task_summary").html("")
+                        $("#undone_task_summary").append(y)
                         $('#id_daftar_deadline').val("")
                     }
                 });
