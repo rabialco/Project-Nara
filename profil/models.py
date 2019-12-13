@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Profile(models.Model):
     PILIHAN_SEMESTER = [
-        (1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(-1,'Not a College Student')
+        (1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(9,'9'),(10,'10'),(11,'11'),(12,'12'),(-1,'Not a College Student')
     ]
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     username = models.CharField(max_length=30, default='')
