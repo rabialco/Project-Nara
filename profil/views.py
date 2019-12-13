@@ -18,9 +18,9 @@ def profil(request):
                 'sem':user.semester,
                 'motto':user.motto,
             })
-            return render(request, 'profil.html', {
-                'profile_form': profile_form,
-            })
+        return render(request, 'profil.html', {
+            'profile_form': profile_form,
+        })
 
 def changeProfil(request):
     obj = Profile.objects.get(pk=1)
