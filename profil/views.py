@@ -8,23 +8,19 @@ from django.core import serializers
 # Create your views here.
 def profil(request):
         # user_form = UserForm() #instance=request.user
-        if request.user.is_authenticated:
-            profile_form = ProfileForm()
-            if Profile.objects.order_by('-pk')[0]:
-                user = Profile.objects.order_by('-pk')[0]
-                return render(request, 'profil.html', {
-                    'profile_form': profile_form,
-                    'nama':user.nama,
-                    'username':user.username,
-                    'sem':user.semester,
-                    'motto':user.motto,
-                })
-            else:
-                return render(request, 'profil.html', {
-                    'profile_form': profile_form,
-                })
-        else:
-            return redirect('landing')
+        profile_form = ProfileForm()
+        if Profile.objects.order_by('-pk')[0]:
+            user = Profile.objects.order_by('-pk')[0]
+            return render(request, 'profil.html', {
+                'profile_form': profile_form,
+                'nama':user.nama,
+                'username':user.username,
+                'sem':user.semester,
+                'motto':user.motto,
+            })
+            return render(request, 'profil.html', {
+                'profile_form': profile_form,
+            })
 
 def changeProfil(request):
     obj = Profile.objects.get(pk=1)
