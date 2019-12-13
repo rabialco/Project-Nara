@@ -26,6 +26,7 @@ urlpatterns = [
     path('jadwal/', include('jadwal.urls')),
     path('profil/', include('profil.urls')),
     path('nilai/', include('nilai.urls')),
+    path('auth/', include('social_django.urls', namespace='social')),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
