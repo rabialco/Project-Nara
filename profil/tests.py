@@ -43,7 +43,7 @@ class ProfileUnitTest(TestCase):
     #     self.assertIn('Baik', html_response)
 
     def test_url_ajax_post(self):
-        data = {'username':'apaja','nama':'apaja','motto':'Baikbaikbaikbaik', 'semester':1, 'thumb':''}
+        data = {'username':'apaja','nama':'apaja','motto':'Baikbaikbaikbaik', 'semester':1}
         response = self.client.post('/profil/chg/', data)
         self.assertEqual(response.status_code, 200)
 

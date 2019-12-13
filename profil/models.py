@@ -11,4 +11,3 @@ class Profile(models.Model):
     nama = models.CharField(max_length=30, default='')
     semester = models.DecimalField(choices=PILIHAN_SEMESTER, default=1, max_digits=1, decimal_places=0)
     motto = models.TextField(max_length=100)
-    thumb = models.ImageField(default='default.png', blank =True, help_text="Optional")

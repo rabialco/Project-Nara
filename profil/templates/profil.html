@@ -24,11 +24,7 @@
                         <td>Username</td>
                         <td class="pl-3" id="uname">
                             {% if username %}
-                                {% if username == 'Fill here!' %}
-                                    : dummy123
-                                {% else %}
-                                    : {{username}}
-                                {% endif %}
+                                : {{username}}
                             {% else %}
                                 : dummy123
                             {% endif %}
@@ -38,11 +34,7 @@
                         <td>Nama</td>
                         <td class="pl-3" id="nama">
                             {% if nama %}
-                                {% if nama == 'Fill here!' %}
-                                    : Dummy
-                                {% else %}
-                                    : {{nama}}
-                                {% endif %}
+                                : {{nama}}
                             {% else %}
                                 : Dummy
                             {% endif %}
@@ -62,11 +54,7 @@
                         <td>Motto</td>
                         <td class="pl-3" id="motto">: <i>
                             {% if motto %}
-                                {% if motto == '' %}
-                                    : Just keep swimming!
-                                {% else %}
-                                    {{motto}}
-                                {% endif %}
+                                {{motto}}
                             {% else %}
                                 : Just keep swimming!
                             {% endif %}
