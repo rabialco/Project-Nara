@@ -10,7 +10,7 @@ $(document).ready(() => {
             method: 'GET',
             url: "http://proj-nara.herokuapp.com/profil/get/",
             success: function(json) {
-                var data = json.data[0];
+                var data = json.data[1];
                 console.log(json)
                 if (data.username != '') {
                     $("#uname").empty();
