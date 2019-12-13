@@ -1,0 +1,23 @@
+/* TBI */
+
+.navbar-navbarcolor{
+  background-color : #F6E0BB;
+}
+
+.container-bodycolor{
+  background-color : #ACEDD7;
+}
+
+.container-broken{
+  background-color : #F6E0BB;
+}
+
+body{
+  font-family: 'Montserrat';
+  color : black;
+  font-weight: bold;
+}
+
+.font{
+  font-family: Roboto;
+}

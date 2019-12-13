@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import JsonResponse
 from .forms import isi,cari_semester
 from .models import mark
 
@@ -12,22 +13,45 @@ def masuk_data(request):
 			tmp_models.nilai = tmp_form.cleaned_data["besar_nilai"]
 			tmp_models.semester = tmp_form.cleaned_data["semester_ke"]
 			tmp_models.save()
-		return redirect("/nilai/")
+			tmp_tumbal = cari_semester()
+		return redirect("nilai/")
 	else:
 		tmp_form = isi()
 		tmk = cari_semester()
 		tmp_models = mark.objects.all()
+		ss = mark
+		sem = 0;
+		for i in tmp_models:
+			if(i.semester>sem):
+				sem = i.semester
+		ss = ss.objects.all().filter(semester=sem)
+		ans = 0
+		tmpz = 0
+		jml = 0
+		cnt = []
+		for i in ss:
+			ans += (i.sks*i.nilai)
+			tmpz += i.sks
+			jml += 1
+			cnt.append(jml)
+		if(tmpz==0):
+			tmpz = 1
+		ans = float(ans)/float(tmpz)
+		ans = round(ans,2)
 		tmp_dic = {
 			"isi" : tmp_form,
 			"mark" : tmp_models,
-			"cari" : tmk
+			"ans": ans,
+			"cari" : tmk,
+			"tampil" : ss,
+			"sem" : sem,
+			"jml" : cnt
 		}
 		return render(request,"indexNilai.html", tmp_dic)
 
 def hitung_ip(request):
 	tmk = cari_semester(request.POST)
 	sem = tmk.data["pencarian"]
-	sem = int(sem)
 	tmp = mark.objects.all()
 	ss = mark
 	ss = ss.objects.all().filter(semester=sem)
@@ -67,3 +91,9 @@ def reset(request):
 		"cari" : tmk
 	}
 	return render(request,"indexNilai.html", tmp_dic)
+
+def getJSON(request):
+	data = {
+		'data':[i.getData() for i in mark.objects.all()]
+	}
+	return JsonResponse(data=data)

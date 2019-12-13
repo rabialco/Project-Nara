@@ -16,3 +16,11 @@ class mark(models.Model):
 	sks = models.IntegerField(blank=False, max_length=None, default=0)
 	nilai = models.FloatField(blank=False, choices=nilai_choice)
 	semester = models.IntegerField(blank=False, max_length=None, default=0)
+
+	def getData(self):
+		return{
+			'mata_kuliah' : self.mata_kuliah,
+			'sks' : self.sks,
+			'nilai' : self.nilai,
+			'semester' : self.semester,
+		}
