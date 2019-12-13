@@ -14,7 +14,7 @@ def masuk_data(request):
 			tmp_models.semester = tmp_form.cleaned_data["semester_ke"]
 			tmp_models.save()
 			tmp_tumbal = cari_semester()
-		return redirect("nilai/")
+		return redirect("/nilai/")
 	else:
 		tmp_form = isi()
 		tmk = cari_semester()
