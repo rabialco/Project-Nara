@@ -11,15 +11,20 @@
     <title>NARA Project</title>
 </head>
 <body>
-    {% block content %}
-    <div class="container" style="font-family: 'Montserrat';position: absolute; top:50%;left:50%;transform: translate(-50%, -50%); max-width: 70%;">
-          <div class="container text-center" style="font-family: 'Montserrat';position: absolute; top:50%;left:50%;transform: translate(-50%, -50%); max-width: 70%;">
+{% block content %}
+    <div class="container"
+         style="font-family: 'Montserrat';position: absolute; top:50%;left:50%;transform: translate(-50%, -50%); max-width: 70%;">
+        <div class="container text-center"
+             style="font-family: 'Montserrat';position: absolute; top:50%;left:50%;transform: translate(-50%, -50%); max-width: 70%;">
             <h1><b><i>Project-Nara Planner</i></b></h1>
             <p>Project-Nara Planner adalah projek bersama yang bertujuan untuk meningkatkan produktivitas mahasiswa
-              dengan mengatur rencana belajar, tenggat waktu tugas, dll.</p>
-          </div>
+                dengan mengatur rencana belajar, tenggat waktu tugas, dll.</p>
+            <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+                Login
+            </a>
+        </div>
     </div>
-    {% endblock content %}
+{% endblock content %}
 </body>
 
 </html>
