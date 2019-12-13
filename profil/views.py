@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 # from .forms import UserForm, ProfileForm
 from .forms import ProfileForm
 from .models import Profile
+from django.core import serializers
 
 # Create your views here.
 def profil(request):
@@ -32,3 +33,6 @@ def profil(request):
              return render(request, 'profil.html', {
                 'profile_form': profile_form,
              })
+
+def ubahProfil(request):
+    return HttpResponse('yey')
