@@ -46,3 +46,6 @@ def changeProfil(request):
     print(request.POST['motto'])
     print("Sokses")
     return HttpResponse('yey')
+
+def dapet(request):
+    return HttpResponse('hore')
